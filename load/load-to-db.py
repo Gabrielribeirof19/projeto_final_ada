@@ -41,7 +41,7 @@ inserted = 0
 for _, row in movies.iterrows():
     cursor.execute(
         "INSERT INTO movies (title, year, imdb_id) VALUES (%s,%s,%s)",
-        (row["title"], row["year"], row["imdb_id"])
+        (row["title"], row["year"], row["movie_id"])
     )
 
     inserted += 1
