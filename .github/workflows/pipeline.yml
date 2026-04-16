@@ -1,31 +1,52 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
-  pr:
+  pull_request:
+    branches:
+      - main
+
+  push:
     branches:
       - main
 
 jobs:
 
-  build:
-
+  ci:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build Docker image
-        run: docker build -t filmes-app .
+      - name: Run tests
+        run: npm test
 
-      - name: Run docker compose
-        run: docker compose up -d
+      - name: Build Docker image (validation only)
+        run: docker build -t filmes-app:test .
+
+
+  cd:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t gabriel461/filmes-app:latest .
+
+      - name: Push Docker image
+        run: docker push gabriel461/filmes-app:latest

@@ -23,21 +23,6 @@ Nesta tela o usuário pode visualizar os filmes cadastrados e suas respectivas a
 
 ---
 
-## ⭐ Lista de Filmes Avaliados
-
-Após o cadastro, os filmes são armazenados no banco de dados e exibidos na lista.
-
-<p align="center">
-  <img src="docs/images/lista-filmes.png" width="700">
-</p>
-
-Cada item da lista mostra:
-
-* Nome do filme
-* Nota atribuída
-
----
-
 ## 🐳 Containers em execução
 
 A aplicação é executada utilizando containers com Docker.
@@ -79,7 +64,7 @@ O projeto possui uma pipeline automática utilizando GitHub Actions.
 </p>
 
 ### link dos artefacts gerados:
-https://github.com/Gabrielribeirof19/projeto_final_ada/actions/runs/24528539405/artifacts/6481421571
+https://github.com/Gabrielribeirof19/projeto_final_ada/actions/runs/24532952034/artifacts/6483215750
 
-
+### Image do docker Hub
 
