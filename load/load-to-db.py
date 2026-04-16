@@ -1,5 +1,6 @@
 import psycopg2
 import pandas as pd
+import os
 
 conn = psycopg2.connect(
     host="localhost",
@@ -9,7 +10,13 @@ conn = psycopg2.connect(
     port=5432
 )
 
-movies = pd.read_csv("data/movies.csv")
+print("📂 CWD:", os.getcwd())
+print("📁 Files:", os.listdir())
+
+movies = pd.read_csv("movies.csv")
+
+print(f"📊 Linhas carregadas do CSV: {len(movies)}")
+print(movies.head())
 
 cursor = conn.cursor()
 
