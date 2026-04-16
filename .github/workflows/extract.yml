@@ -18,40 +18,31 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
 
-      - name: Checkout do código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
-      - name: Instalar dependências
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Criar pasta data
-        run: mkdir -p data
-
-      - name: Rodar Extração
+      - name: Run Extract
         env:
           OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
-        run: python ./extract/extract-pipeline.py
+        run: python extract/extract-pipeline.py
 
-      - name: Aguardar banco iniciar
+      - name: Wait database
         run: sleep 10
 
-      - name: Rodar Load
+      - name: Run Load
         run: python load/load-to-db.py
-
-      - name: Salvar CSVs como Artefatos
-        uses: actions/upload-artifact@v4
-        with:
-          name: movieflix-data
-          path: data/
