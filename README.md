@@ -67,4 +67,9 @@ O projeto possui uma pipeline automática utilizando GitHub Actions.
 https://github.com/Gabrielribeirof19/projeto_final_ada/actions/runs/24532952034/artifacts/6483215750
 
 ### Image do docker Hub
+https://hub.docker.com/repository/docker/gabriel461/filmes-app
+
+### CD Funcionando
+<img width="1366" height="348" alt="image" src="https://github.com/user-attachments/assets/b25c9760-0688-40c0-ad47-46e5b33ffbc9" />
+
 
