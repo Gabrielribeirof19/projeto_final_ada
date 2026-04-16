@@ -10,6 +10,13 @@ response = requests.get(url)
 movie = response.json()
 
 movies = pd.DataFrame([movie])
+
+movies = movies.rename(columns={
+    "Title": "title",
+    "Year": "year",
+    "imdbID": "imdb_id"
+})
+
 movies.to_csv("data/movies.csv", index=False)
 
 print("CSV de filmes gerado")
