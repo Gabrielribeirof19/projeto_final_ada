@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 conn = psycopg2.connect(
-    host="postgres",  # FIX para GitHub Actions
+    host= "localhost",
     database="moviesdb",
     user="postgres",
     password="postgres",
