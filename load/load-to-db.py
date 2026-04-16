@@ -3,7 +3,7 @@ import pandas as pd
 import os
 
 conn = psycopg2.connect(
-    host="localhost",
+    host="postgres",  # FIX para GitHub Actions
     database="moviesdb",
     user="postgres",
     password="postgres",
@@ -40,20 +40,19 @@ inserted = 0
 
 for _, row in movies.iterrows():
     cursor.execute(
-        "INSERT INTO movies (title, year, movie_id) VALUES (%s,%s,%s)",
-        (row["title"], row["year"], row["movie_id"])
+        "INSERT INTO movies (title, year, imdb_id) VALUES (%s,%s,%s)",
+        (row["title"], row["year"], row["movie_id"])  # mapeamento correto
     )
 
     inserted += 1
 
-    # imprime linha formatada (limita tamanho do título)
     print(f"{row['title'][:38]:40} {row['year']:<6} {row['movie_id']}")
 
 conn.commit()
 
 print("-"*60)
 print(f"✔️ Total inserido: {inserted}")
-print("="*60 + "\n")
+print("="*60)
 
 cursor.execute("SELECT COUNT(*) FROM movies;")
 total = cursor.fetchone()[0]
@@ -61,8 +60,7 @@ total = cursor.fetchone()[0]
 print(f"📦 TOTAL NO BANCO: {total}")
 print("="*60)
 
-conn.commit()
 cursor.close()
 conn.close()
 
-print("Dados inseridos no banco")
+print("🚀 Dados inseridos no banco com sucesso")
