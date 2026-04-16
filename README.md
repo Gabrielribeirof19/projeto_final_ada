@@ -21,16 +21,6 @@ Nesta tela o usuário pode visualizar os filmes cadastrados e suas respectivas a
 
 ---
 
-## 🎬 Cadastro de Filmes
-
-Formulário utilizado para cadastrar um novo filme e atribuir uma nota.
-
-<p align="center">
-  <img src="docs/images/cadastrar-filme.png" width="700">
-</p>
-
-O sistema recebe o nome do filme e a nota atribuída pelo usuário.
-
 ---
 
 ## ⭐ Lista de Filmes Avaliados
@@ -80,14 +70,16 @@ A pipeline executa automaticamente quando ocorre um **push no repositório**, re
 
 ---
 
-## 📂 Estrutura das imagens no repositório
+## PIPELINE DE ETL RODANDO
 
-```
-docs/
- └── images/
-      ├── tela-home.png
-      ├── cadastrar-filme.png
-      ├── lista-filmes.png
-      ├── docker-containers.png
-      └── github-actions.png
-```
+O projeto possui uma pipeline automática utilizando GitHub Actions.
+
+<p align="center">
+  <img src="docs/images/github-actions-etl.png" width="700">
+</p>
+
+### link dos artefacts gerados:
+https://github.com/Gabrielribeirof19/projeto_final_ada/actions/runs/24528539405/artifacts/6481421571
+
+
+

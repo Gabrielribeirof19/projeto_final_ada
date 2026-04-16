@@ -1,15 +1,15 @@
-import pandas as pd
 import psycopg2
-
-movies = pd.read_csv("data/movies.csv")
+import pandas as pd
 
 conn = psycopg2.connect(
-    host="localhost",
+    host="postgres",
     database="moviesdb",
     user="postgres",
     password="postgres",
     port=5432
 )
+
+movies = pd.read_csv("data/movies.csv")
 
 cursor = conn.cursor()
 
@@ -21,16 +21,14 @@ CREATE TABLE IF NOT EXISTS movies (
     imdb_id TEXT
 )
 """)
-print(movies.columns)
-for _, row in movies.iterrows():
 
+for _, row in movies.iterrows():
     cursor.execute(
         "INSERT INTO movies (title, year, imdb_id) VALUES (%s,%s,%s)",
         (row["title"], row["year"], row["imdb_id"])
     )
 
 conn.commit()
-
 cursor.close()
 conn.close()
 

@@ -2,37 +2,71 @@
 <html>
 
 <head>
-<title>Filmes</title>
+  <title>Catálogo de Filmes</title>
+  <style>
+
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      padding:40px;
+    }
+
+    h1{
+      text-align:center;
+    }
+
+    table{
+      width:80%;
+      margin:auto;
+      border-collapse: collapse;
+      background:white;
+    }
+
+    th, td{
+      padding:12px;
+      border:1px solid #ddd;
+      text-align:left;
+    }
+
+    th{
+      background:#333;
+      color:white;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<h1>Cadastrar Filme</h1>
+<h1>Lista de Filmes</h1>
 
-<form action="/filmes" method="POST">
+<table>
 
-<input name="nome" placeholder="Nome do filme" required>
+<thead>
+<tr>
+<th>ID</th>
+<th>Título</th>
+<th>Ano</th>
+<th>IMDB</th>
+</tr>
+</thead>
 
-<input name="nota" type="number" min="0" max="10" required>
+<tbody>
 
-<button type="submit">Salvar</button>
+<% filmes.forEach(filme => { %>
 
-</form>
-
-<h2>Lista de Filmes</h2>
-
-<ul>
-
-<% filmes.forEach(f => { %>
-
-<li>
-<strong><%= f.nome %></strong>
-Nota: <%= f.nota %>
-</li>
+<tr>
+<td><%= filme.id %></td>
+<td><%= filme.title %></td>
+<td><%= filme.year %></td>
+<td><%= filme.imdb_id %></td>
+</tr>
 
 <% }) %>
 
-</ul>
+</tbody>
+
+</table>
 
 </body>
 
