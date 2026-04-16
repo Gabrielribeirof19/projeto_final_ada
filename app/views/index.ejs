@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Filmes</title>
+</head>
+
+<body>
+
+<h1>Cadastrar Filme</h1>
+
+<form action="/filmes" method="POST">
+
+<input name="nome" placeholder="Nome do filme" required>
+
+<input name="nota" type="number" min="0" max="10" required>
+
+<button type="submit">Salvar</button>
+
+</form>
+
+<h2>Lista de Filmes</h2>
+
+<ul>
+
+<% filmes.forEach(f => { %>
+
+<li>
+<strong><%= f.nome %></strong>
+Nota: <%= f.nota %>
+</li>
+
+<% }) %>
+
+</ul>
+
+</body>
+
+</html>
