@@ -40,14 +40,14 @@ inserted = 0
 
 for _, row in movies.iterrows():
     cursor.execute(
-        "INSERT INTO movies (title, year, imdb_id) VALUES (%s,%s,%s)",
+        "INSERT INTO movies (title, year, movie_id) VALUES (%s,%s,%s)",
         (row["title"], row["year"], row["movie_id"])
     )
 
     inserted += 1
 
     # imprime linha formatada (limita tamanho do título)
-    print(f"{row['title'][:38]:40} {row['year']:<6} {row['imdb_id']}")
+    print(f"{row['title'][:38]:40} {row['year']:<6} {row['movie_id']}")
 
 conn.commit()
 
